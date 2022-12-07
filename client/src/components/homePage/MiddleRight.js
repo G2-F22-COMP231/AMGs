@@ -3,10 +3,12 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import styled from "styled-components";
 
 function MiddleRight() {
+  const navigate = useNavigate();
   return (
     <Container>
       <Row>
@@ -32,7 +34,7 @@ function MiddleRight() {
       </Row>
       <Row className="text-center">
         <Col>
-          <Button>
+          <Button onClick={() => navigate("/setAppointment")}>
             <Nav.Link href="#">Get an appointment</Nav.Link>
           </Button>
         </Col>

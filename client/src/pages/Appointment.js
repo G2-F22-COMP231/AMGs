@@ -1,207 +1,105 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-import FormGroup from "react-bootstrap/FormGroup";
-import FormLabel from "react-bootstrap/FormLabel";
-import FormSelect from "react-bootstrap/FormSelect";
-import FormCheck from "react-bootstrap/FormCheck";
-import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import styled from "styled-components";
-const car = {
-  make: "Honda",
-  model: "Civic",
-  year: "2015",
-  color: "blue",
-  transmission: "auto",
-  engine: "1.8",
-  fuelType: "gas",
-};
+import Card from "react-bootstrap/Card";
+import Table from "react-bootstrap/Table";
+import { useNavigate } from "react-router-dom";
 
-const appointmentForm = {
-  // update the userid with actual user
-  userId: "12345",
-  carDetails: car,
-  mechanic: "",
-  repariDescription: "",
-  urgent: false,
-  comeToMe: false,
-  extraDescription: "",
-  selectedDate: "",
-  selectedTime: "",
-};
-
-function AppointmentForm() {
-  const [errorMessage, setErrorMessage] = useState("No Error!");
-  const [form, setForm] = useState(appointmentForm);
-  const [isChecked, setIsChecked] = useState(false);
-  const [urgent, setUrgent] = useState(false);
-  const [comeToMe, setComeToMe] = useState(false);
-  const checkTerms = useRef();
-  const submitForm = () => {
-    console.log(form);
-  };
-  const handleCheck = () => {
-    setIsChecked(checkTerms.current.checked);
+const dummy_data = [
+  {
+    date: "12/12/2022",
+    time: "11:15",
+    mechanic: "Honda Downtown",
+    resolved: "In Progress",
+    issue: "Oil Change",
+  },
+  {
+    date: "12/12/2022",
+    time: "16:15",
+    mechanic: "Honda Downtown",
+    resolved: "completed",
+    issue: "Brakes Change",
+  },
+  {
+    date: "10/10/2022",
+    time: "10:10",
+    mechanic: "Honda Downtown",
+    resolved: "completed",
+    issue: "Filters Change",
+  },
+  {
+    date: "05/36/2022",
+    time: "11:11",
+    mechanic: "Honda Downtown",
+    resolved: "completed",
+    issue: "General Maintenance",
+  },
+];
+function Appointment() {
+  const navigate = useNavigate();
+  const handleSubmit = () => {
+    navigate("/setAppointment");
   };
   return (
-    <Container style={{ marginTop: "40px", marginBottom: "40px" }}>
-      <h2 style={{ textAlign: "center", marginBottom: "40px" }}>
-        Set an Appointment
-      </h2>
-      {errorMessage !== "No Error!" && <ShowError>{errorMessage}</ShowError>}
-      <Row className="justify-content-md-center">
-        <Form.Label style={{ fontWeight: "bold" }}>
-          Your Car Details;
-        </Form.Label>
-        <p>
-          {car.make} {car.model} {car.year} {car.color} {car.transmission}{" "}
-          transmission {car.engine} engine and fuel type: {car.fuelType}
-        </p>
-      </Row>
-      <Row className="justify-content-sm-center">
-        <FormGroup className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label style={{ fontWeight: "bold" }}>
-            Select Mechanic
-          </Form.Label>
-          <FormSelect
-            aria-label="Default select example"
-            onChange={(event) => {
-              setForm({ ...form, mechanic: event.target.value });
-            }}
-          >
-            <option>Select here</option>
-            <option value="hondaDowntown">Honda Downtown</option>
-            <option value="hondaMidtown">Honda Midtown</option>
-            <option value="hondaUptown">Honda Uptown</option>
-          </FormSelect>
-        </FormGroup>
-        <FormGroup className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label style={{ fontWeight: "bold" }}>
-            Provide a Description
-          </Form.Label>
-          <FormControl
-            as="textarea"
-            rows={3}
-            onChange={(event) => {
-              setForm({
-                ...form,
-                repariDescription: event.target.value === "on" ? true : false,
-              });
-            }}
-          />
-        </FormGroup>
-      </Row>
-      <Row style={{ marginTop: "20px", marginBottom: "40px" }}>
-        <Col>
-          <FormCheck
-            type="checkbox"
-            label="Urgent"
-            onChange={(e) => {
-              setUrgent(!urgent);
-              setForm({
-                ...form,
-                urgent: e.target.value === "on" ? true : false,
-              });
-            }}
-            // ref={checkTerms}
-            // style={isChecked === false ? { color: "red" } : { color: "green" }}
-            // checked={isChecked}
-          />
-        </Col>
-        <Col>
-          <FormCheck
-            type="checkbox"
-            label="I want mechanic comes to my place"
-            onChange={() => {
-              setComeToMe(!comeToMe);
-              setForm({ ...form, comeToMe: true });
-            }}
-            // ref={checkTerms}
-            // style={isChecked === false ? { color: "red" } : { color: "green" }}
-            // checked={isChecked}
-          />
-        </Col>
-      </Row>
-      <Row
-        // style={{ marginTop: "20px", marginBottom: "40px" }, }
-        style={
-          urgent || comeToMe === true
-            ? { display: "block" }
-            : { display: "none" }
-        }
-      >
-        <Col>
-          <Form.Label style={{ fontWeight: "bold" }}>
-            Provide an Address Description
-          </Form.Label>
-          <FormControl
-            as="textarea"
-            rows={3}
-            onChange={(event) => {
-              setForm({ ...form, extraDescription: event.target.value });
-            }}
-          />
-        </Col>
-      </Row>
-      <Row className="justify-content-center">
-        <Col md={2}>
-          <Form.Text style={{ fontWeight: "bold" }}>Select Date</Form.Text>
-        </Col>
-        <Col md={4}>
-          <FormControl
-            type="date"
-            name="date_of_appointment"
-            onChange={(event) => {
-              setForm({ ...form, selectedDate: event.target.value });
-            }}
-          />
-        </Col>
-        <Col md={2}>
-          <Form.Text style={{ fontWeight: "bold" }}>Select Time</Form.Text>
-        </Col>
-        <Col md={4}>
-          <FormControl
-            type="time"
-            name="date_of_appointment"
-            onChange={(event) => {
-              setForm({ ...form, selectedTime: event.target.value });
-            }}
-          />
-        </Col>
-      </Row>
-      <Row style={{ marginTop: "20px", marginBottom: "40px" }}>
-        <Col>
-          <FormCheck
-            type="checkbox"
-            label="Accept Terms & Conditions"
-            onChange={handleCheck}
-            ref={checkTerms}
-            style={isChecked === false ? { color: "red" } : { color: "green" }}
-            checked={isChecked}
-          />
-          <Button
-            variant="primary"
-            type="submit"
-            onClick={() => submitForm()}
-            disabled={isChecked === false && true}
-            style={{ marginTop: "10px" }}
-          >
-            Submit
+    <Container style={{ marginTop: "40px" }}>
+      <Card>
+        <Card.Header as="h5">Set New Appointment</Card.Header>
+        <Card.Body>
+          <Card.Text>
+            You need a repair service? Let's have an appointment.
+          </Card.Text>
+          <Button variant="primary" onClick={handleSubmit}>
+            Set an appointment
           </Button>
-        </Col>
-      </Row>
+        </Card.Body>
+      </Card>
+      <Card style={{ marginTop: "30px" }}>
+        <Card.Header as="h5">All Appointments</Card.Header>
+        <Card.Body>
+          {dummy_data.length === 0 && (
+            <Card.Text>No appointment data available.</Card.Text>
+          )}
+          {dummy_data.length !== 0 && (
+            <Table striped>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Mechanic</th>
+                  <th>Issue</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Resolved</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dummy_data.map((appointment, index) => {
+                  return (
+                    <tr
+                      style={
+                        appointment.resolved === "In Progress"
+                          ? { backgroundColor: "greenyellow" }
+                          : {}
+                      }
+                      key={index}
+                    >
+                      <td>{index + 1}</td>
+                      <td>{appointment.mechanic}</td>
+                      <td>{appointment.issue}</td>
+                      <td>{appointment.date}</td>
+                      <td>{appointment.time}</td>
+                      <td>{appointment.resolved}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          )}
+        </Card.Body>
+      </Card>
     </Container>
   );
 }
-const ShowError = styled.div`
-  display: block;
-  background-color: #e5a8b7;
-  color: black;
-  font-weight: 500;
-  font-size: 1.5rem;
-  text-align: center;
-`;
-export default AppointmentForm;
+
+export default Appointment;
