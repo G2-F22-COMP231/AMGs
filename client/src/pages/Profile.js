@@ -5,11 +5,12 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import Table from "react-bootstrap/Table";
 import styled from "styled-components";
 
 const User = {
-  firstName: "Veysel",
-  lastName: "Boybay",
+  firstName: "John",
+  lastName: "Smith",
   address: "0000 yonge street, toronto, ontario, 123ABC",
   phoneNumber: "123456789",
   car: {
@@ -21,7 +22,36 @@ const User = {
     engine: "1.8",
     fuelType: "gas",
   },
-  appointments: [],
+  appointments: [
+    {
+      date: "12/12/2022",
+      time: "11:15",
+      mechanic: "Honda Downtown",
+      resolved: "In Progress",
+      issue: "Oil Change",
+    },
+    {
+      date: "12/12/2022",
+      time: "16:15",
+      mechanic: "Honda Downtown",
+      resolved: "completed",
+      issue: "Brakes Change",
+    },
+    {
+      date: "10/10/2022",
+      time: "10:10",
+      mechanic: "Honda Downtown",
+      resolved: "completed",
+      issue: "Filters Change",
+    },
+    {
+      date: "05/36/2022",
+      time: "11:11",
+      mechanic: "Honda Downtown",
+      resolved: "completed",
+      issue: "General Maintenance",
+    },
+  ],
 };
 
 function Profile() {
@@ -70,12 +100,49 @@ function Profile() {
           )}
           {active === "appointmentHistory" && (
             <Card>
-              <Section>
-                <h5>Appointment History:</h5>{" "}
-                {User.appointments.length === 0 && (
-                  <p>No Appointment history made!</p>
-                )}{" "}
-              </Section>
+              <Card style={{ marginTop: "30px" }}>
+                <Card.Header as="h5">All Appointments</Card.Header>
+                <Card.Body>
+                  {User.appointments.length === 0 && (
+                    <Card.Text>No appointment data available.</Card.Text>
+                  )}
+                  {User.appointments.length !== 0 && (
+                    <Table striped>
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Mechanic</th>
+                          <th>Issue</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                          <th>Resolved</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {User.appointments.map((appointment, index) => {
+                          return (
+                            <tr
+                              style={
+                                appointment.resolved === "In Progress"
+                                  ? { backgroundColor: "greenyellow" }
+                                  : {}
+                              }
+                              key={index}
+                            >
+                              <td>{index + 1}</td>
+                              <td>{appointment.mechanic}</td>
+                              <td>{appointment.issue}</td>
+                              <td>{appointment.date}</td>
+                              <td>{appointment.time}</td>
+                              <td>{appointment.resolved}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </Table>
+                  )}
+                </Card.Body>
+              </Card>
             </Card>
           )}
         </Col>

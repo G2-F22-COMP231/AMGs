@@ -22,6 +22,7 @@ function Register() {
           let token = data.data;
           localStorage.setItem("auth-token", JSON.stringify(token));
           navigate("/");
+          window.location.reload();
         }
         if (data.status === "username in use") {
           alert(data.error);
