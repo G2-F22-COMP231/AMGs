@@ -54,6 +54,9 @@ router.get('/ratings', function (req, res) {
 });
 
 
+router.get('/availability', function (req, res) {
+  res.render('Availability', { title: 'Mechanics Availability' });
+});
 
 
 client.connect(err => {

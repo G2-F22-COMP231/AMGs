@@ -32,8 +32,6 @@ app.set('view engine', 'ejs');
 
 
 
-
-
 //point mongoos eto database url
 
 app.use(logger('dev'));
@@ -113,6 +111,7 @@ app.post('/api/register', async (req, res)=> {
 
 
 });
+
 
 
 
