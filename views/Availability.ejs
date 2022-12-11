@@ -8,9 +8,37 @@
 <br>
 <h2>Select a date to see which mechanics are availabe</h2><br><br>
 
-<label for="Date">Date  </label>
-<input type="date" id="Date" name="Date" style="background-color: #525252;">
+<label for="Date">Date  &nbsp;</label>
+<input type="date" id="Date" name="Date" style="background-color: #525252;"><br><br>
+<input type="submit" style="border-radius: 10%; width: 150px; background-color: #525252;" onclick="chooser()"><br><br>
+<h4>Available mechanics will be shown here</h4>
+<div id='text'style='border: 3px; margin:auto; width:50%;'></div><br><br><br><br>
+<script>
+    function chooser(){
+        let arr=['Ryan Alves Barbosa', "Jeremy O'Shane",' Dylan Rutledge',' Aidan Cardwell',' Isaac Morwood',' Jesse Krefft',' Jett Bethel',' Austin Betts',' Ryan Tilly']
+        const chooseRandom = (arr, num = 1) => {
+        const res = [];
+        for(let i = 0; i < num; ){
+            const random = Math.floor(Math.random() * arr.length);
+            if(res.indexOf(arr[random]) !== -1){
+                continue;
+            };
+            res.push(arr[random]);
+            i++;
+   };
+   return res;
+};
+let push = chooseRandom(arr, Math.floor(Math.random() * 10))
+var div = document.getElementById('text');
+div.textContent=''
+let textnode= document.createTextNode(push)
+div.appendChild(textnode)
 
+}
+        
 
+    
+    
+</script>
 <%- include('partials/bottom_nav') %>
 <%- include('partials/footer') %>
