@@ -1,0 +1,16 @@
+input {
+    height: 2vmax;
+}
+
+textarea {
+    height: 3vmax;
+}
+
+label {
+    color: black;
+    font-weight:bolder
+}
+.heading {
+    font-size: 50px;
+    font-weight: 400;
+}
