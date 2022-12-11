@@ -31,12 +31,7 @@ form{
     <Center> <h1>Appointment with mechanic</h1></Center><br><br>
    
     <form action="/post-data1" class="was-validated" method="post">
-        <!-- <div class="mb-3 mt-3">
-            <label for="uname" class="form-label">Select Date:</label>
-            <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Please fill out this field.</div>
-        </div> -->
+        
         
         <label for="service1">Full Name</label>: <input type="text" id="service1" name="name" style="width: 400px"> 
          <div class="mb-3 mt-3">
@@ -59,7 +54,9 @@ form{
 <label for="service">Other service:</label>
 <br>
 
-<input type="text" id="service1" name="other" draggable="true" style="width: 400px; height: 200px;">
+<input type="text" id="service1" name="other" draggable="true" style="width: 400px; height: 200px;"><br><br>
+<label for="email">Email &nbsp;</label><input type="text" id="email" name="email"><br><br>
+<label for="mechanic">Desired Mechanic &nbsp;</label><input type="text" id="mechanic" name="email">
     <br>
     <br>
 
@@ -69,14 +66,15 @@ form{
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Check this checkbox to continue.</div>
         </div>
-        <button type="submit" class="btn btn-primary"  value="submit">Submit</button>
+        <button type="submit" class="btn btn-primary"  value="submit" onclick="sub()">Submit</button>
    
     </form>
     </div>
 </body>
 <script>
     function sub() {
-  window.alert("Submitted. Youll be contacted shortly.")
+        var email = document.getElementById("email").value
+  window.alert("Submitted. a confirmation will be sent to  " +email)
   
   
 }
