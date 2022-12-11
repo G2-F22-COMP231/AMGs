@@ -49,6 +49,10 @@ router.get('/register', function (req, res) {
   res.render('register', { title: 'Sign up' });
 });
 
+router.get('/ratings', function (req, res) {
+  res.render('Ratings', { title: 'Mechanics Ratings' });
+});
+
 
 
 
