@@ -29,7 +29,7 @@ form{
     
     <Center> <h1>Car Details</h1></Center>
    
-    <form action="" class="was-validated">
+    <form action="/post-data3" class="was-validated" method="post">
         
         
        
@@ -45,23 +45,9 @@ form{
         <input type="text" id="caryear" name="caryear">
 
 <br><br>
-        <p>Transmission :</p>
-         <input type="radio" id="automatic" name="fav_transmission" value="automatic">
-        <label for="automatic">Automatic</label>
-        <input type="radio" id="manual" name="fav_transmission" value="manual">
-          <label for="manual">manual</label><br><br>
         
-        <label for="carengine">Engine :</label>
-          <input type="text" id="carengine" name="carengine"><br>
-        <br>
         
-        <p>Fuel Type :</p>
-        <input type="checkbox" id="vehicle1" name="vehicle1" value="motorvehicle">
-        <label for="vehicle1">Petrol</label>
-        <input type="checkbox" id="vehicle2" name="vehicle2" value="motorvehicle2">
-        <label for="vehicle2">Diesel</label>
-        <input type="checkbox" id="vehicle3" name="vehicle3" value="motorvehicle3">
-        <label for="vehicle3">Electric</label><br><br>
+        
 
         <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
@@ -69,8 +55,8 @@ form{
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Check this checkbox to continue.</div>
         </div>
-        <button type="submit" class="btn btn-primary" onclick="sub()">Submit</button>
-        <button type="submit" class="btn btn-primary" onclick="add()">Add Car</button>
+        <button type="submit" class="btn btn-primary" onclick="sub()" value="submit">Submit</button>
+        
         <button type="reset" class="btn btn-primary">Reset</button>
     </form>
     </div>

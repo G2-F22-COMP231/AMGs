@@ -10,7 +10,7 @@ const routes= require('./users')
 var bodyParser = require('body-parser');
 const JWT_SECRET = process.env.JWT_KEY
 const mongoose = require('mongoose')
-
+router.use(express.urlencoded({ extended: false }))
 const cors = require("cors")
 const { data } = require('jquery');
 const jwt = require('jsonwebtoken');
@@ -95,7 +95,24 @@ router.post('/post-data1', function (req, res) {
 
 });
 
+router.post('/post-data3', function (req, res) {
+  var dbo = client.db("mydb");
+  
+  nameJ= JSON.stringify(req.body)
+  console.log(nameJ)
+  var myobj = {make: req.body.carmake, model: req.body.carmodel, year:req.body.caryear};
+  MongoClient.connect(url, function(err, db) {
+    dbo.collection("customers-cars").insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 DATA RECIEVED");
+    
+    
+  });
 
+  });
+  res.render('Landing', { title: 'Home' });
+
+});
 
 
 
