@@ -81,7 +81,7 @@ router.post('/post-data1', function (req, res) {
   
   nameJ= JSON.stringify(req.body)
   console.log(nameJ)
-  var myobj = { Fullname: req.body.name, Date: req.body.date, time:req.body.time, Diagnostic:req.body.diag, Other:req.body.other };
+  var myobj = { Fullname: req.body.name, Date: req.body.date, time:req.body.time, Diagnostic:req.body.diag, Other:req.body.other, email:req.body.email };
   MongoClient.connect(url, function(err, db) {
     dbo.collection("customers").insertOne(myobj, function(err, res) {
     if (err) throw err;
