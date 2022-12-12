@@ -59,6 +59,10 @@ router.get('/availability', function (req, res) {
 });
 
 
+router.get('/made', function (req, res) {
+  res.render('made', { title: 'Appointments made' });
+});
+
 client.connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object
