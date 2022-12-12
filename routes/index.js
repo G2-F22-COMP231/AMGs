@@ -63,6 +63,11 @@ router.get('/made', function (req, res) {
   res.render('made', { title: 'Appointments made' });
 });
 
+
+router.get('/rate', function (req, res) {
+  res.render('Rate', { title: 'Rate your recent visits' });
+});
+
 client.connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object

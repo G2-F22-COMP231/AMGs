@@ -1,0 +1,148 @@
+<%- include('partials/header') %>
+<%- include('partials/main_nav') %>
+<style>
+    
+.rating {
+   width: 180px;
+}
+
+.rating__star {
+   cursor: pointer;
+   color: #dabd18b2;
+}
+.rating__star2 {
+   cursor: pointer;
+   color: #dabd18b2;
+}
+.rating__star3 {
+   cursor: pointer;
+   color: #dabd18b2;
+}
+.rating__star4 {
+   cursor: pointer;
+   color: #dabd18b2;
+}
+</style>
+<head>
+
+	<title>HTML Table Generator</title> 
+	<style>
+		table {
+			border:2px solid #000000;
+			border-collapse:collapse;
+			border-spacing:3px;
+			padding:5px;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+		}
+		table th {
+			border:2px solid #000000;
+			padding:5px;
+			background: #000000;
+			color: #ffffff;
+		}
+		table td {
+			border:2px solid #000000;
+			text-align:center;
+			padding:5px;
+			background: #141414;
+			color: #ffffff;
+		}
+	</style>
+</head>
+
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Mechanic Name</th>
+				<th>Rate</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>&nbsp;2022/12/29</td>
+				<td>&nbsp;Isaac Morwood</td>
+				<td>&nbsp; <div class="rating">
+                    <i class="rating__star far fa-star"></i>
+                    <i class="rating__star far fa-star"></i>
+                    <i class="rating__star far fa-star"></i>
+                    <i class="rating__star far fa-star"></i>
+                    <i class="rating__star far fa-star"></i>
+              </div></td>
+			</tr>
+			<tr>
+				<td>&nbsp;2022/12/05</td>
+				<td>&nbsp;Aidan Cardwell</td>
+				<td>&nbsp;<div class="rating">
+                    <i class="rating__star2 far fa-star"></i>
+                    <i class="rating__star2 far fa-star"></i>
+                    <i class="rating__star2 far fa-star"></i>
+                    <i class="rating__star2 far fa-star"></i>
+                    <i class="rating__star2 far fa-star"></i>
+              </div></td>
+			</tr>
+			<tr>
+				<td>&nbsp;2022/12/21</td>
+				<td>&nbsp;Dylan Rutledge</td>
+				<td>&nbsp;<div class="rating">
+                    <i class="rating__star3 far fa-star"></i>
+                    <i class="rating__star3 far fa-star"></i>
+                    <i class="rating__star3 far fa-star"></i>
+                    <i class="rating__star3 far fa-star"></i>
+                    <i class="rating__star3 far fa-star"></i>
+              </div></td>
+			</tr>
+			<tr>
+				<td>&nbsp;2022/10/05</td>
+				<td>&nbsp;Jeremy O'Shane</td>
+				<td>&nbsp;<div class="rating">
+                    <i class="rating__star4 far fa-star"></i>
+                    <i class="rating__star4 far fa-star"></i>
+                    <i class="rating__star4 far fa-star"></i>
+                    <i class="rating__star4 far fa-star"></i>
+                    <i class="rating__star4 far fa-star"></i>
+              </div></td>
+			</tr>
+		</tbody>
+	</table>
+<script>
+    const ratingStars = [...document.getElementsByClassName("rating__star")];
+    const ratingStars2 = [...document.getElementsByClassName("rating__star2")];
+    const ratingStars3 = [...document.getElementsByClassName("rating__star3")];
+    const ratingStars4 = [...document.getElementsByClassName("rating__star4")];
+    function executeRating(stars) {
+   const starClassActive = "rating__star fas fa-star";
+   const starClassInactive = "rating__star far fa-star";
+   const starsLength = stars.length;
+   let i;
+   stars.map((star) => {
+      star.onclick = () => {
+         i = stars.indexOf(star);
+
+         if (star.className===starClassInactive) {        
+            for (i; i >= 0; --i) stars[i].className = starClassActive;
+         } else {
+            for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
+            
+         }
+         
+      };
+      
+   });
+   
+   }
+   
+   executeRating(ratingStars);
+   executeRating(ratingStars2);
+   executeRating(ratingStars3);
+   executeRating(ratingStars4);
+   
+
+</script>
+
+<%- include('partials/bottom_nav') %>
+<%- include('partials/footer') %>
